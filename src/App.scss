@@ -1,0 +1,44 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr; // Two columns: one for the profile and one for the activity cards
+  gap: 16px;
+  padding: 16px;
+}
+
+.profile-card {
+  background: #f0f0f0;
+  padding: 16px;
+  border-radius: 8px;
+
+  .timeframe-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background: #0056b3;
+      }
+    }
+  }
+}
+
+.activity-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // Two columns for the activity cards
+  gap: 16px;
+}
+
+.activity-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

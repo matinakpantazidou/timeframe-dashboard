@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './App.scss';
+import { timeframes } from './data';
+import { Activity } from './types';
+import ActivityCard from './ActivityCard';
 
-function App() {
+const App: React.FC = () => {
+  const [activeTimeframe, setActiveTimeframe] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="dashboard">
+      <div className="profile-card">
+        <h1>User's Profile</h1>
+        {/* Add more profile details here */}
+        <div className="timeframe-buttons">
+          <button onClick={() => setActiveTimeframe('daily')}>Daily</button>
+          <button onClick={() => setActiveTimeframe('weekly')}>Weekly</button>
+          <button onClick={() => setActiveTimeframe('monthly')}>Monthly</button>
+        </div>
+      </div>
+      <div className="activity-cards">
+        {timeframes.map((activity: Activity) => (
+          <ActivityCard key={activity.title} activity={activity} timeframe={activeTimeframe} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
