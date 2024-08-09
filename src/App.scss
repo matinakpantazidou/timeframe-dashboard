@@ -1,62 +1,136 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 
+$primary-background-color: hsl(226, 43%, 10%);
+$soft-blue: hsl(195, 74%, 62%);
+$blue: hsl(195, 74%, 62%);
+$violet: hsl(264, 64%, 52%);
+$soft-blue: hsl(195, 74%, 62%);
+$desaturated-blue: hsl(235, 45%, 61%);
+$pale-blue: hsl(236, 100%, 87%);
+$dark-blue: hsl(235, 46%, 20%);
+$Violet: hsl(264, 64%, 52%);
+$lime-green: hsl(145, 58%, 55%);
+
 // Apply the font family globally
 body {
   font-family: 'Rubik', sans-serif;
+  background-color: $primary-background-color;
+  margin: 0; // Optional: Remove default margin
+  padding: 40px 20px 40px 20px; // Optional: Remove default padding
+}
+h1, h3, p {
+  color: #ffff;
+  font-weight: normal;
 }
 
 .dashboard {
   display: grid;
   gap: 16px;
   padding: 16px;
+  max-width: 1200px;  // Set a maximum width for the dashboard
+  margin: 0 auto; 
 
   // Default: Desktop (1440px and above)
-  grid-template-columns: 1fr 2fr; // Two columns: one for the profile, one for the activity cards
+  grid-template-columns: 1fr 1fr 1fr 1fr; // Four columns: one for the profile, three for the activity cards
 
   .profile-card {
-    background: #f0f0f0;
+    background: $desaturated-blue;
     padding: 16px;
     border-radius: 8px;
+    grid-column: span 1; // Profile card takes up the first column
 
-    .timeframe-buttons {
-      display: flex;
-      gap: 8px;
-      margin-top: 16px;
-    
-      button {
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        background: #007bff;
-        color: white;
-        cursor: pointer;
-        font-family: 'Rubik', sans-serif; // Apply Rubik font
-        font-size: 16px; // Optional: Set font size for consistency
-        font-weight: 400; // Optional: Set font weight for consistency
-    
-        &:hover {
-          background: #0056b3;
+    .button-card
+      .timeframe-buttons {
+        display: flex;
+        flex-direction: column; // Stack buttons vertically
+        gap: 8px;
+        margin-top: 16px;
+      
+        button {
+          padding: 8px 16px;
+          border: none;
+          border-radius: 4px;
+          background: none; // Remove button background to resemble links
+          color: #fff; // Use link color
+          cursor: pointer;
+          font-family: 'Rubik', sans-serif; // Apply Rubik font
+          font-size: 16px; // Optional: Set font size for consistency
+          font-weight: 400; // Optional: Set font weight for consistency
+          text-align: left; // Align text to the left to resemble links
+      
+          &:hover,
+          &:focus {
+            text-decoration: none;
+          }
+      
+          &:nth-child(1) {
+            &:hover,
+            &:focus {
+              color: $lime-green;
+            }
+          }
+      
+          &:nth-child(2) {
+            &:hover,
+            &:focus {
+              color: #32cd32;
+            }
+          }
+      
+          &:nth-child(3) {
+            &:hover,
+            &:focus {
+              color: #1e90ff;
+            }
+          }
         }
       }
-    }
+    
   }
+
+  .avatar {
+    width: 100px; // Set width as per your design
+    height: 100px; // Ensure height is the same as width for a perfect circle
+    border-radius: 50%; // This makes the image circular
+    object-fit: cover; // Ensures the image covers the circle area without distortion
+    margin-bottom: 16px; // Optional: Add space below the avatar
+  }
+  
+  img {
+    border-radius: 50%; // Makes the image circular
+    border: 2px solid #fff; // Adds a white border around the image
+    width: 100px; // Adjust the size as needed
+    height: 100px; // Ensure the image remains a square for the circular effect
+  }  
 
   .activity-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); // Default: Two columns for the activity cards
+    grid-template-columns: 1fr 1fr 1fr; // Three columns for the activity cards
     gap: 16px;
-
-    // Narrower screens (430px down to 310px)
-    @media (max-width: 430px) {
-      grid-template-columns: 1fr; // Stack activity cards in a single column
-    }
+    grid-column: span 3; // Activity cards take up the remaining three columns
+    color: #ffff;
   }
 
   .activity-card {
-    background: #fff;
+    background: $dark-blue;
     padding: 16px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease; // Smooth transition for hover/focus states
+
+  &:hover {
+    background-color: $blue; // Change to your first hover color
+  }
+
+  &:nth-child(2):hover,
+  &:nth-child(2):focus {
+    background-color: $violet; // Change to your second hover/focus color
+  }
+
+  &:nth-child(3):hover,
+  &:nth-child(3):focus {
+    background-color: $lime-green; // Change to your third hover/focus color
+  }
   }
 
   // Mobile (414px and below)
